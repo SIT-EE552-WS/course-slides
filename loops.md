@@ -21,7 +21,8 @@ System.out.println(1*2*2*2*2*2*2*2*2*2*2*2*2); // 2^12
 ```
 ---
 ## Step 3
-- Now, extract out a variable.  Nothing has changed at this point, just another way to express the same thing. `pow` is just a stand-in for the value 1.
+- Now, extract out a variable.  Nothing has changed at this point, just a third way to express the same thing.
+- Here `pow` is a stand-in for the value 1.
 ```java
 int pow = 1;
 System.out.println(pow);    // 2^0
