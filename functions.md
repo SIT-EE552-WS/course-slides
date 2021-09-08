@@ -97,7 +97,7 @@ int myFunction(int x, char c){
         return x * 4;
     } else {
         // c is not a latin letter
-        return x + y;
+        return x;
     }
 }
 ```
@@ -110,7 +110,7 @@ int myFunction(int x, char c){
 ```java
 import java.lang.Math;
 
-int quadratic(int a, int b, int c, int d, int e, int x){
+int quartic(int a, int b, int c, int d, int e, int x){
     return a * Math.pow(x,4) + b * Math.pow(x,3) + 
            c * Math.pow(x,2) + d * x + e;
 }
@@ -190,14 +190,14 @@ public class Composition {
 - This next code will cause your program to crash
 
 ```java
-int recurse(x){
+int recurse(int x){
     return recurse(x-1);
 }
 ```
 - This one will run, but will always produce zero, but why?
 
 ```java
-int recurse(x){
+int recurse(int x){
     if(x == 0){
         return 0;
     }
@@ -206,7 +206,7 @@ int recurse(x){
 ```
 ----
 ```java [2|5|2|5|2|5|2|5|2|5|2|3]
-int recurse(x){
+int recurse(int x){
     if(x == 0){
         return 0;
     }
@@ -238,7 +238,7 @@ x! &= x \cdot (x-1)!
 And in Java 
 
 ```java
-int factorial(x){
+int factorial(int x){
     if(x == 0){
         return 1;
     }
