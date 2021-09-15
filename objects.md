@@ -4,11 +4,12 @@
 ## Outline
 - Motivation
 - What is an Object?
-- Properties, State, and Behaviors
+- Data and Behaviors
+- Principles
 - Classes vs Objects
 - Inheritance
-- Scope and Encapsulation
-
+- Access Modifiers: Scope and Encapsulation
+- Abstract Methods and Interfaces (if we have time)
 ---
 ## Motivation 
 > We write code for humans, not computers
@@ -21,230 +22,284 @@ Let's start with an example...
 - An object is a unit of code that wraps some **data** and/or **behaviors**
 - It may or may not represent a physical "real world" object
 - It should be namable using a **noun**
-----
-### Principles
-
 ---
-## Inputs and Outputs
-- Still looking at math
-  - **Domain** the set of values for which a function is defined
-  - **Range** the set of values which the function can produce
+## Data and Behaviors
+- Objects have **fields** (declared as variables within the object)
+and **methods** (which we saw last week).
+
+- Fields may describe characteristics that change over time (e.g. the position of
+a car) typically called **state** or may be less likely to change (e.g. the
+car's color).
 ----
-### For example: 
-`$$ f(x) = x^2 $$`
-  - **Domain** Takes as input any number `$(-\infty$, $+\infty)$`
-  - **Range** Only produces positive numbers `$[0, +\infty$)`
-----
-### For example: 
-`$$ f(x) = cos(x) $$`
-  - **Domain** Takes as input any number `$(-\infty$, $+\infty)$`
-  - **Range** Only produces values between -1 and +1 `$[-1, 1]$`
-----
-### For example: 
-`$$ f(x) = log_{10}(x) $$`
-_(Ignore imaginary numbers for now)_
-  - **Domain** Takes as input any number greater than zero `$(0,\infty)$`
-  - **Range** No minimum or maximum output value `$(-\infty$, $+\infty)$`
----
-## Functions in Java
-- Also have a valid set of inputs and outputs similar to domain and range
-- These are expressed using _types_
-----
-### For example: 
-```java
-int square(int x){
-    return x*x;
-}
+### Field Examples
+
+```java 
+public class Rectangle {
+  int height = 50;
+  int width = 100;
+  int top = 10;
+  int left = 10;
+}  
 ```
 ----
-### For example: 
-```java
-boolean isEven(int x){
-    return x % 2 == 0;
-}
+### Field Examples
+
+```java 
+public class Person {
+  String name = "John Smith";
+  String email = "jsmith@example.com";
+  int age = 35;
+}  
 ```
 ----
-### For example:
-```java
-int ceiling(double x){
-    return (int) x; // this notation is called a "type cast"
+### Field Examples
 
-    // There's more accurate way to write this function,
-    // but it's a little too complicated to get into for now.
-    // This one produces the wrong result for negative numbers.
-}
-```
----
-## Functions in Java
-- Functions in math can take multiple inputs
-`$$ f(x,y) = x + y $$`
-- So can functions in Java
-
-```java
-int add(int x, int y){
-    return x + y;
-}
-```
-- Each input argument has a type and the overall function has only one output type
-----
-## Functions in Java
-- The types don't have to be the same
-
-```java
-int myFunction(int x, char c){
-    if( c >= 'A' && c <= 'Z'){
-        // c is a capital Latin letter
-        return x * 2;
-    } else if (c >= 'a' && c <= 'z'){
-        // c is a lowercase latin letter
-        return x * 4;
-    } else {
-        // c is not a latin letter
-        return x;
-    }
-}
+```java 
+public class Coffee {
+  int espressoMl = 60;
+  int chocolateMl = 60;
+  int steamedMilkMl = 30;
+}  
 ```
 ----
-## Functions in Java
-- The Java Standard Library already defines many [standard mathematical functions](https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Math.html) 
-----
-- They can be used if you import the `java.lang.Math` class
+### Method Examples
 
-```java
-import java.lang.Math;
+```java 
+public class Rectangle {
+  int height = 50;
+  int width = 100;
+  int top = 10;
+  int left = 10;
 
-int quartic(int a, int b, int c, int d, int e, int x){
-    return a * Math.pow(x,4) + b * Math.pow(x,3) + 
-           c * Math.pow(x,2) + d * x + e;
-}
+  int getArea(){
+    return height * width;
+  }
+}  
 ```
-- Which is equivalent to
-
-`$$ a \cdot x^4 + b\cdot x^3 + c\cdot x^2 + d\cdot x + e $$`
----
-## Methods
-- All the code we write in Java has to belong to a _class_.
-```java
-public class HelloWorld {
-    public static void main(String[] args){
-        System.out.println("Hello World");
-    }
-}
-```
-- in this example we call `main` a _method_ of the _class_ `HelloWorld`.
 ----
-- Functions like those on the previous slides also need to be put inside a class
+### Method Examples
 
-```java
-public class SomeClass {
-    static int square(int x){
-        return x*x;
-    }
+```java 
+public class Person {
+  String name = "John Smith";
+  String email = "jsmith@example.com";
+  int age = 35;
 
-    public static void main(String[] args){
-        System.out.println(square(2)); 
-        // will output 4 to the console
-    }
-}
-```
-- Ignore `static` for now - just know that if you want to use your function inside `main` it has to have
-  the `static` keyword.
-----
-- Every _function_ is a _method_.
-- Not every _method_ is a _function_ 
-- For example, `main` does not return anything. That's why we say it has return type `void`
-```java
-    public static void main(String[] args){
-        System.out.println("Hello World");
-    }
+  void growUp(){
+    age = age + 1;
+  }
+}  
 ```
 ---
-## Composition
-- You can combine functions together as long as they are compatible
-`\[\begin{aligned} 
-f(x) &= x^2 \\
-g(x) &= x + 5 \\
-g(f(x)) &= x^2 + 5
-\end{aligned}\]
-`
+## Principles
+Java's idea of Object-Oriented Programming is inspired by the Smalltalk 
+language (c. 1970s).
+
+1. Everything is an object.
+2. Every _object_ is an _instance_ of a _class_.
+3. Every class has a _superclass_.
+4. Everything happens by message sends.
+5. Method lookup follows the _inheritance_ chain.
+---
+## Classes vs. Objects
+
+- A **class** describes the structure and behavior of an object.  Think
+of it as a template for making objects.
+
+![Cookie Cutter](https://c.tenor.com/_1hHmOcQyOIAAAAC/kin-community-baking.gif)
 ----
-## Composition
-- The same thing in Java
+## Classes vs. Objects
+- An instance of a class is created by using the `new` keyword.
 
 ```java
-public class Composition {
-    static int square(int x){
-        return x*x;
-    }
+Rectangle r = new Rectangle();
+Person john = new Person();
+Coffee c = new Coffee();
+```
+----
+## Classes vs. Objects
+- We can create multiple instances of the same class.
 
-    static int plus5(int x){
-        return x + 5;
-    }
+```java
+Rectangle r1 = new Rectangle();
+Rectangle r2 = new Rectangle();
+Rectangle r3 = new Rectangle();
+// etc...
+```
+----
+## Classes vs. Objects
+- Each instance has is own copy of each of the class's fields
 
-    public static void main(String[] args){
-        System.out.println(plus5(square(2))); 
-        // will output 9 to the console
-    }
+```java
+Person p1 = new Person();
+Person p2 = new Person(); 
+
+p1.growUp();
+
+System.out.println(p1.age); // prints 36
+System.out.println(p2.age); // prints 35
+```
+----
+## Classes vs. Objects
+- The `new` keyword calls a special method called a **constructor**.
+- A constructor is written like this and can take arguments
+
+```java
+public class Rectangle {
+  int height;
+  int width;
+
+  public Rectangle(int height, int width){
+   this.height = height;
+   this.width = width;
+  }
 }
+```
+----
+## Classes vs. Objects
+
+```java 
+Rectangle r1 = new Rectangle(10, 5);
+Rectangle r2 = new Rectagle(3, 10);
+
+System.out.println(r1.getArea()); // prints 50
+System.out.println(r2.getArea()); // prints 30
 ```
 ---
-## Recursion
-- You can compose a function with itself (as long as the program knows when to stop!)
-- This next code will cause your program to crash
+## Inheritance
+
+- Inheritance in Java is the mechanism of basing one class upon another class.
+- When thinking of inheritance, it is helpful to consider the **is-a** 
+  relationship
+
+----
+### Example from Biology
+
+- A poodle **is a** dog.
+- A pug **is a** dog.
+- A dog **is a** canid.
+- A wolf **is a** canid.  (_But_... a wolf is not a dog)
+- A canid **is a(n)** animal.
+  - A dog **is a(n)** animal.
+  - A poodle **is a(n)** animal.
+
+----
+### Example from Biology
+- In Java, we declare class inheritance using the `extends` keyword
 
 ```java
-int recurse(int x){
-    return recurse(x-1);
+public class Animal {
+  // ...
+}
+
+public class Canid extends Animal {
+  // ...
+}
+
+public class Dog extends Canid {
+  // ...
 }
 ```
-- This one will run, but will always produce zero, but why?
+----
+### Example from Biology
+- If we have 
+```java
+public class Dog extends Canid {
+  // ...
+}
+```
+
+- then we say that `Dog` is a **subclass** of `Canid`, and `Canid` is 
+  a **superclass** of `Dog`.
+
+----
+### Example from Biology
+- You can always replace a subclass with its superclass on the left side
+  of a variable assignment
 
 ```java
-int recurse(int x){
-    if(x == 0){
-        return 0;
-    }
-    return recurse(x-1);
-}
-```
-----
-```java [2|5|2|5|2|5|2|5|2|5|2|3]
-int recurse(int x){
-    if(x == 0){
-        return 0;
-    }
-    return recurse(x-1);
-}
+Animal a = new Dog(); // this is fine
+Canid c = new Dog();  // so is this
 ```
 
-Let's step through the code...
+- You can also cast a superclass to its subclass if you are sure they match
 
+```java 
+Animal dog = new Dog();
+Animal wolf = new Wolf();
+
+Dog d = (Dog) dog; // this is fine
+Dog d2 = (Dog) wolf; //this will throw a ClassCastException
 ```
-recurse(5) = recurse(4)
-           = recurse(3)
-           = recurse(2)
-           = recurse(1)
-           = recurse(0)
-           = 0
+----
+
+### Example from Biology
+- You can tell whether it is safe to do a cast with the `instanceof` keyword
+
+```java 
+Animal dog = new Dog();
+Animal wolf = new Wolf();
+
+System.out.println(dog instanceof Dog);  // prints true
+System.out.println(wolf instanceof Dog); // prints false
+System.out.println(dog instanceof Canid);  // prints true
+System.out.println(wolf instanceof Canid); // prints true
 ```
-----
-### A more practical example
-- Factorial: `$ 5! = 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 $`  
-- Or more generally, 
-----
-`\[\begin{aligned} 
-0! &= 1 \\
-x! &= x \cdot (x-1)!
-\end{aligned}\]
-`
-----
-And in Java 
+---
+## Inheritance and Overriding
+
+- If a superclass and a subclass both include the same method declaration 
+  with different code inside, the subclass's implementation will win.
 
 ```java
-int factorial(int x){
-    if(x == 0){
-        return 1;
-    }
-    return x * factorial(x-1);
+public class Animal {
+  public void makeSound(){
+    System.out.println("???");
+  }
 }
+
+public class Cat extends Animal {
+  public void makeSound(){
+    System.out.println("Meow");
+  }
+}
+
+public class Dog extends Animal {
+  public void makeSound(){
+    System.out.println("Woof");
+  }
+}
+
+Animal dog = new Dog();
+dog.makeSound(); // prints Woof
+
+Animal cat = new Cat();
+cat.makeSound(); // prints Meow
 ```
+---
+## Access Modifiers
+- Fields and methods in a class can have one or more access modifiers
+  - `static` means that the method or field belongs to the class rather
+     than the object.
+  - `public` means that the method or field can be used from any other
+     class in your project.
+  - `protected` means the method or field can only be used by the class
+     and any of its subclasses
+  - `private` means the method or field can only be used within the class
+----
+## Access Modifiers
+|Modifier | Class| Package |Subclass | World|
+|---------|------|---------|---------|------|
+|public  |Y |Y |Y| Y|
+|protected |Y |Y |Y |N|
+|no modifier |Y |Y |N| N|
+|private |Y |N| N |N|
+----
+## Why Make Things Private?
+
+- **Encapsulation** - data and methods that operate on that data should be 
+  bundled together.  Prevent direct access to data that should not be 
+  changed outside the class.
+
+- For example, a person may change their name for any number of reasons, 
+  but _I_ cannot change __your__ name.
