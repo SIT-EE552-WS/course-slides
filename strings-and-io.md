@@ -44,7 +44,7 @@ int[] someArray = new int[10]; // array of 10 integers
 
 someArray[5] = 42; // setting the value of some element
 
-System.out.println(someArray[5] + 1); // prints 43a
+System.out.println(someArray[5] + 1); // prints 43
 
 System.out.prinln(someArray.length); // prints 10
 ```
@@ -71,7 +71,7 @@ System.arraycopy(
     arr2,          // array to copy to
     0,             // position to start pasting
     someArr.length // number of elements to copy
-);
+)
 
 arr2[6] = 6; // works now
 
@@ -106,7 +106,7 @@ str.toUpperCase();    // "HELLO WORLD"
 - See the [Java API documentation](https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html) for a full list
 
 ----
-### Multiline Strings
+### Multi-line Strings
 - **Text Blocks** were introduced to Java in version 14.
 
 ```java
@@ -120,7 +120,7 @@ String longText = """
 - Text blocks measure indentation based on the 
   left of the first triple quote
 ----
-### Strings and Other Datatypes
+### Strings and Other Data Types
 - You can convert other data types to `String` in 
   multiple ways.
 
@@ -137,6 +137,28 @@ int i = Integer.parseInt("1"); // i = 1
 int j = Integer.parseInt("a"); // NumberFormatException 
 ```
 
+----
+### Testing for Equality
+- Since strings are objects, you cannot use `==` to compare them
+
+```java
+String str1 = "Hello";
+String str2 = "Hello";
+
+str1 == str2 // is false!
+```
+
+- Instead...use the `equals` method.  (We'll discuss that more in detail in a future lecture.)
+
+```java 
+String str1 = "Hello";
+String str2 = "Hello";
+String str3 = "Goodbye";
+
+str1.equals(str2); // true
+str1.equals(str3); // false
+
+```
 ---
 ## How to Receive String Input Three Ways
 
@@ -188,7 +210,7 @@ int i = sc.nextInt();
 - Just as individual strings are ultimately represented
   as an array of bytes, inputs (and outputs) are 
   streams of bytes.
-- A stream is an orderd, unbounded sequence
+- A stream is an ordered, unbounded sequence
 - [InputStream](https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html) is the base class
 
 ---
@@ -207,7 +229,7 @@ FileReader src = new FileReader("/path/to/file.txt");
 char[] buffer = new char[128];
 int numChars = src.read(buffer);
 ```
-- Managing buffers by hand is tedious, though so Java provies a
+- Managing buffers by hand is tedious, though so Java provides a
   [`BufferedReader`](https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/BufferedReader.html).
 
 ```java
