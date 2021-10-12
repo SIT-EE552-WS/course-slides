@@ -308,3 +308,210 @@ interface Comparable<T> {
 
 }
 ```
+----
+
+```java [1,10-13]
+public class Fraction implements Comparable<Fraction>{
+  public int numerator;
+  public int denominator;
+
+  public Fraction(int num, int den){
+     this.numerator = num;
+     this.denominator = den;
+  }
+
+  public int compareTo(Fraction other){
+    return this.numerator * other.denominator - 
+        other.numerator * this.denominator;
+  }
+}
+```
+
+---
+## Making more complex objects
+
+----
+
+- **Overloading** is when a class has several methods with the same name
+  but different parameters
+
+```java
+static String valueOf(boolean b)
+static String valueOf(char c)
+static String valueOf(char[] data)
+static String valueOf(char[] data, int offset, int count)
+static String valueOf(double d)
+static String valueOf(float f)
+static String valueOf(int i)
+static String valueOf(long l)
+static String valueOf(Object obj)
+
+```
+
+----
+
+- You can also overload constructors for classes with many fields
+
+```java
+public class Sandwich {
+  String meat;
+  String cheese;
+  String bread;
+  String topping;
+
+  public Sandwich( 
+    String meat;
+    String cheese;
+    String bread;
+    String topping;
+  ) {
+    this.meat = meat;
+    this.cheese = cheese;
+    this.bread = bread;
+    this.topping = topping;
+  }
+
+  // for vegetarians
+  public Sandwich( 
+    String cheese;
+    String bread;
+    String topping;
+  ) {
+    return this(null, cheese, bread, topping);
+  }
+}
+```
+----
+
+## But what if multiple parameters are optional?
+
+- For example, even with overloading we can't have
+
+```java
+
+  public Sandwich( 
+    String meat;
+    String bread;
+    String topping;
+  ) {
+    return this(meat, null, bread, topping);
+  }
+
+```
+
+- the compiler has no way to distinguish this method from the vegetarian
+  constructor
+
+----
+
+## The Builder Pattern
+
+
+```java
+public class Sandwich {
+  String meat;
+  String cheese;
+  String bread;
+  String topping;
+
+  public Sandwich( 
+    String meat;
+    String cheese;
+    String bread;
+    String topping;
+  ) {
+    this.meat = meat;
+    this.cheese = cheese;
+    this.bread = bread;
+    this.topping = topping;
+  }
+
+  static Builder builder(){
+    return new Builder();
+  }
+
+  public static class SandwichBuilder {
+    String meat;
+    String cheese;
+    String bread;
+    String topping;
+
+    public Builder meat(String meat){
+      this.meat = meat;
+      return this;
+    }
+
+    public Builder cheese(String cheese){
+      this.cheese = cheese;
+      return this;
+    }
+    
+    public Builder bread(String bread){
+      this.bread = bread;
+      return this;
+    }
+
+    public Builder topping(String topping){
+      this.topping = topping;
+      return this;
+    }
+
+    public Sandwich build(){
+      return new Sandwich(meat, cheese, bread, topping);
+    }
+  }
+}
+```
+----
+
+## How do we use it?
+
+
+```java
+
+Sandwich s1 = Sandwich
+  .builder()
+  .meat("turkey")
+  .cheese("swiss")
+  .bread("wheat")
+  .build();
+
+Sandwich s2 = Sandwich
+  .builder()
+  .cheese("mozzarella")
+  .topping("tomato")
+  .bread("italian")
+  .build();
+```
+
+----
+
+## Wait...where was the "new" keyword?
+
+- A factory method is a pattern for creating objects without directly 
+  calling the constructors
+
+```java
+
+  static Builder builder(){
+    return new Builder();
+  }
+```
+
+----
+
+- We could have also defined some other factory methods like:
+
+```java
+
+   static Sandwich vegetarian(
+      String cheese, String bread, String topping
+   ){
+    return new Sandwich(null, cheese, bread, topping);
+   }
+
+
+   static Sandwich vegan( String bread, String topping){
+    return new Sandwich(null, null, bread, topping);
+   }
+```
