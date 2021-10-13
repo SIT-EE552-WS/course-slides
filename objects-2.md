@@ -232,7 +232,7 @@ public class Fraction {
 }
 
 ```
-
+----
 
 ### More efficient using prime numbers
 
@@ -360,10 +360,10 @@ public class Sandwich {
   String topping;
 
   public Sandwich( 
-    String meat;
-    String cheese;
-    String bread;
-    String topping;
+    String meat,
+    String cheese,
+    String bread,
+    String topping
   ) {
     this.meat = meat;
     this.cheese = cheese;
@@ -373,9 +373,9 @@ public class Sandwich {
 
   // for vegetarians
   public Sandwich( 
-    String cheese;
-    String bread;
-    String topping;
+    String cheese,
+    String bread,
+    String topping
   ) {
     return this(null, cheese, bread, topping);
   }
@@ -390,9 +390,9 @@ public class Sandwich {
 ```java
 
   public Sandwich( 
-    String meat;
-    String bread;
-    String topping;
+    String meat,
+    String bread,
+    String topping
   ) {
     return this(meat, null, bread, topping);
   }
@@ -415,10 +415,10 @@ public class Sandwich {
   String topping;
 
   public Sandwich( 
-    String meat;
-    String cheese;
-    String bread;
-    String topping;
+    String meat,
+    String cheese,
+    String bread,
+    String topping
   ) {
     this.meat = meat;
     this.cheese = cheese;
