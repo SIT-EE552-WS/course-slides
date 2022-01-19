@@ -20,7 +20,7 @@ title: Lecture 1 - Introduction to Java
 
 ## What is Java?
 
----
+----
 
 ## What is Java?
 
@@ -109,7 +109,7 @@ use in our programs including
 
   - Java is constantly growing and changing - now, more quickly than ever.
 
-![Java Timeline](Java%20Timeline.png)
+![Java Timeline](Java_Timeline.png)
 
 
 ---
