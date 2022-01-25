@@ -13,6 +13,7 @@ title: Lecture 2 - Functions, Methods, and Recursion
 - Methods vs Functions
 - Composition
 - Recursion
+- Javadoc
 ---
 ## Motivation 
 > A good programmer is a **lazy** programmer.
@@ -269,3 +270,49 @@ int factorial(int x){
     return x * factorial(x-1);
 }
 ```
+---
+
+## Javadoc
+
+- You should aim to write self-documenting code as much as possible
+- When writing functions give thought to the function name and parameters
+- Sometimes, though, even with careful names users of your function might
+  need more information
+
+----
+
+### Javadoc
+
+- The JDK includes `javadoc` - a tool for generating documentation from 
+  comments in Java code
+- `javadoc` is how they produce the API documentation we reference
+
+----
+
+ ### How to write Javadoc comments
+
+ ```java [1|2,3|5-15|17|18-19]
+/**
+ * Returns the natural logarithm (base <i>e</i>) of a 
+ * {@code double} value.  
+ * 
+ * Special cases:
+ * <ul><li>If the argument is NaN or less than zero, 
+ * then the result is NaN.
+ * <li>If the argument is positive infinity, then the 
+ * result is positive infinity.
+ * <li>If the argument is positive zero or negative 
+ *     zero, then the result is negative infinity.
+ * </ul>
+ *
+ * <p>The computed result must be within 1 ulp of the exact 
+ * result. Results must be semi-monotonic.
+ *
+ * @param   a   a value
+ * @return  the value ln&nbsp;{@code a}, the natural 
+ *          logarithm of {@code a}.
+ */
+public static double log(double a) { 
+// ... 
+}
+ ``` 
