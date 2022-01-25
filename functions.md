@@ -1,3 +1,7 @@
+---
+title: Lecture 2 - Functions, Methods, and Recursion
+---
+
 # Lecture 2
 ## Functions, Methods, and Recursion
 ---
@@ -29,23 +33,42 @@
 ----
 ### For example: 
 `$$ f(x) = x^2 $$`
-  - **Domain** Takes as input any number `$(-\infty$, $+\infty)$`
-  - **Range** Only produces positive numbers `$[0, +\infty$)`
+
+<ul>
+  <li class="fragment"><b>Domain</b> Takes as input any number $(-\infty$, $+\infty)$</li>
+  <li class="fragment"><b>Range</b> Only produces positive numbers $[0, +\infty$)</li>
+</ul>
 ----
 ### For example: 
 `$$ f(x) = cos(x) $$`
-  - **Domain** Takes as input any number `$(-\infty$, $+\infty)$`
-  - **Range** Only produces values between -1 and +1 `$[-1, 1]$`
+
+<ul>
+  <li class="fragment"><b>Domain</b> Takes as input any number $(-\infty$, $+\infty)$</li>
+  <li class="fragment"><b>Range</b> Only produces values between -1 and +1 $[-1, 1]$</li>
+</ul>
 ----
 ### For example: 
 `$$ f(x) = log_{10}(x) $$`
 _(Ignore imaginary numbers for now)_
-  - **Domain** Takes as input any number greater than zero `$(0,\infty)$`
-  - **Range** No minimum or maximum output value `$(-\infty$, $+\infty)$`
+
+<ul>
+  <li class="fragment"><b>Domain</b> Takes as input any number greater than zero $(0,\infty)$</li>
+  <li class="fragment"><b>Range</b> No minimum or maximum output value $(-\infty$, $+\infty)$</li>
+</ul>
 ---
 ## Functions in Java
 - Also have a valid set of inputs and outputs similar to domain and range
 - These are expressed using _types_
+
+----
+#### Template for a Function
+
+```
+[type] functionName( [type] arg) { 
+    // some code... 
+    return [value];
+}
+```
 ----
 ### For example: 
 ```java
@@ -82,7 +105,7 @@ int add(int x, int y){
     return x + y;
 }
 ```
-- Each input argument has a type and the overall function has only one output type
+- Each input argument has a type and the overall function has **only one** output type
 ----
 ## Functions in Java
 - The types don't have to be the same
@@ -103,22 +126,23 @@ int myFunction(int x, char c){
 ```
 ----
 ## Functions in Java
-- The Java Standard Library already defines many [standard mathematical functions](https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Math.html) 
+- The Java Standard Library already defines many [standard mathematical functions](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Math.html) 
 ----
-- They can be used if you import the `java.lang.Math` class
+They can be used if you import the `java.lang.Math` class
 
 ```java
 import java.lang.Math;
 
-int quartic(int a, int b, int c, int d, int e, int x){
+double quartic(int a, int b, int c, int d, int e, int x){
     return a * Math.pow(x,4) + b * Math.pow(x,3) + 
            c * Math.pow(x,2) + d * x + e;
 }
 ```
-- Which is equivalent to
-
+Which is equivalent to
 `$$ a \cdot x^4 + b\cdot x^3 + c\cdot x^2 + d\cdot x + e $$`
+
 ---
+
 ## Methods
 - All the code we write in Java has to belong to a _class_.
 ```java
