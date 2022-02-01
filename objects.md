@@ -1,3 +1,8 @@
+---
+title: Lecture 3 - Objects, Classes and Inheritance
+
+---
+
 # Lecture 3
 ## Objects, Classes and Inheritance
 ---
@@ -12,8 +17,6 @@
 - Abstract Methods and Interfaces (if we have time)
 ---
 ## Motivation 
-> We write code for humans, not computers
-
 > Humans' have a limited working memory (7 ± 2)
 
 Let's start with an example...
@@ -245,6 +248,27 @@ System.out.println(wolf instanceof Dog); // prints false
 System.out.println(dog instanceof Canid);  // prints true
 System.out.println(wolf instanceof Canid); // prints true
 ```
+
+----
+
+### New in Java 17
+
+```java 
+// Before Java 17
+Animal animal = new Dog();
+if(animal instanceof Dog){
+  Dog dog = (Dog) animal;
+  dog.bark();
+}
+
+// New with Java 17
+Animal animal = new Dog();
+if(animal instanceof Dog dog){
+  dog.bark();
+}
+```
+
+
 ---
 ## Inheritance and Overriding
 
@@ -279,13 +303,13 @@ cat.makeSound(); // prints Meow
 ---
 ## Access Modifiers
 - Fields and methods in a class can have one or more access modifiers
-  - `static` means that the method or field belongs to the class rather
+  - `static` - the method or field belongs to the class rather
      than the object.
-  - `public` means that the method or field can be used from any other
+  - `public` - the method or field can be used from any other
      class in your project.
-  - `protected` means the method or field can only be used by the class
+  - `protected` - the method or field can only be used by the class
      and any of its subclasses
-  - `private` means the method or field can only be used within the class
+  - `private` - the method or field can only be used within the class
 ----
 ## Access Modifiers
 |Modifier | Class| Package |Subclass | World|
