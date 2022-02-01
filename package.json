@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "watch": "reveal-md",
-    "build": "reveal-md . --static"
+    "build": "reveal-md . --static --listing-template listing.html"
   },
   "keywords": [],
   "author": "",

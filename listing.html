@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{pageTitle}}</title>
+    <link rel="stylesheet" href="{{{themeUrl}}}" id="theme" />
+    <style>
+      body {
+        font-family: system-ui;
+        font-size: 100%;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      li {
+        line-height: 2.5em;
+      }
+
+      li:nth-child(even) {
+        background-color: #f0f0f0;
+      }
+
+      a {
+        display: block;
+        text-decoration: none;
+        padding: 0 1em;
+      }
+
+      a:hover {
+        background-color: #cfcfff;
+      }
+
+      main {
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <ul>
+        {{#files}}
+        <li>
+          <a href="{{filePath}}" title="{{title}}">
+            {{#title}}{{.}}
+            ({{filePath}}){{/title}}{{^title}}{{filePath}}{{/title}}
+          </a>
+        </li>
+        {{/files}}
+      </ul>
+    </main>
+  </body>
+</html>
