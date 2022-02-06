@@ -152,7 +152,7 @@ String str2 = "Hello";
 str1 == str2 // may be false!
 ```
 
-- Instead...use the `equals` method or even `equalsIgnoreCase`.  (We'll discuss that more in detail in a future lecture.)
+- Instead...use the `equals` method or `equalsIgnoreCase`
 
 ```java 
 String str1 = "Hello";
@@ -273,15 +273,57 @@ BufferedReader src = Files.newBufferedReader(
 - Enter...the **checked exception**
 
 ----
-### Checked Exceptions
-- A `Throwable` is the superclass of all possible errors and exceptions
+### Exceptions
+- A [Throwable](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Throwable.html) is the superclass of all possible _errors_ and _exceptions_
   in the language.
-- We generally don't worry about `Error` in Java as application 
+- We generally don't worry about [Error](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Error.html) in Java as application 
   developers
-- We handle `Exception`s using the keywords `try` and `catch`
-- Exceptions can be a `RuntimeException` or a checked exception
-- Using `try...catch` for a `RuntimeException` is optional but 
-  using it for checked exceptions is **required**
+- There are many types of [Exception](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html)
+----
+
+### Checked Exceptions
+- Any Exception that is not a subclass of `RuntimeException` is called a checked exception
+- You _can_ write code to handle any exception, but you **must** write code to 
+checked exceptions
+- That requirement is enforced by the compiler
+----
+
+### Handling Exceptions
+- We generally handle `Exception`s using the keywords `try` and `catch`
+
+```java
+
+try {
+  // some code that will cause an exception
+} catch (SomeException e){
+  // code that will run if the exception occurs
+  // here `e` is a variable that contains the exception
+}
+
+// you can also take different actions depending 
+// on the type of error
+
+try {
+  // some code that could cause multiple exceptions
+} catch (SomeException e1){
+  // code that will run if the first type of exception occurs
+} catch (SomeOtherException e2){
+  // code that will run if the second type of exception occurs
+}
+```
+----
+### Handling Exceptions - One Other Way
+
+- You can also pass the requirement to handle the 
+  exception to whatever calls your code
+
+```java
+public void someMethod() throws SomeException {
+  // some code that throws an exception
+}
+```
+- Incidentally, this is how the Java library indicates
+  which methods will throw checked exceptions
 ----
 ### Read a File without Compiler Errors
 
