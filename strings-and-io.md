@@ -69,18 +69,31 @@ arr1[6] = 6;
 
 int[] arr2 = int[10];
 System.arraycopy(
-    someArr,       // array to copy from
+    someArr,       // source array to copy from
     0,             // position to start copying
-    arr2,          // array to copy to
+    arr2,          // destination array to copy to
     0,             // position to start pasting
     someArr.length // number of elements to copy
 )
 
 arr2[6] = 6; // works now
-
-
-
 ```
+
+----
+### Aside - Arrays
+
+- We usually use loops with this kind of structure to work 
+with arrays
+
+```java
+int[] arr1 = {1, 2, 3, 4, 5}; 
+
+for(int i = 0; i < arr1.length; ++){
+  int current = arr1[i];
+  // do something 
+}
+```
+
 ----
 ### Back to Strings...
 - Remember, internally `char` is a numeric type
@@ -128,9 +141,9 @@ String longText = """
 - You can convert other data types to `String` in 
   multiple ways.
 
-```
+```java
 String s1 = "" + 1;            // s1 = "1"
-String s2 = String.valueOf(1); //s2 = "1"
+String s2 = String.valueOf(1); // s2 = "1"
 ```
 
 - You can also convert from `String` to other 
@@ -261,6 +274,7 @@ BufferedReader src = Files.newBufferedReader(
 ```
 ----
 #### All of the previous examples will fail...
+![](https://i.imgur.com/5cbzqFj.gif)
 ----
 ### Checked Exceptions
 - Many things can go wrong with reading from files:
@@ -299,10 +313,9 @@ try {
   // code that will run if the exception occurs
   // here `e` is a variable that contains the exception
 }
+```
 
-// you can also take different actions depending 
-// on the type of error
-
+```java 
 try {
   // some code that could cause multiple exceptions
 } catch (SomeException e1){
@@ -365,10 +378,31 @@ try {
   ioe.printStackTrace();
 }
 ```
-### But what if there's an exception?
 ----
+
+### But what if there's an exception?
 - `try...catch` will short circuit right after
    the line where the error occurred
+
+```java
+try {
+  BufferedReader src = Files.newBufferedReader(
+    Paths.get("/path/to/file.txt"),
+    StandardCharsets.UTF_8
+  );
+  String line = src.readLine(); //exception happens here
+  // lines below this never run
+  src.close();
+} catch (IOException ioe){
+  // do something to recover from the error
+  ioe.printStackTrace();
+}
+```
+
+----
+### Finally Blocks
+- Code in a `finally` block will always execute
+  regardless of error or success
 
 ```java
 try {
@@ -384,9 +418,7 @@ try {
   src.close(); 
 }
 ```
-- Code in the `finally` block will always execute
-  regardless of error or success
-- ...but `src` is not available here
+- ...but fails to compile because `src` is not available here
 
 ----
 ### Same example with corrected scope
@@ -410,6 +442,7 @@ try {
 ```
 ----
 #### This is why some folks hate Java...
+![](https://media3.giphy.com/media/kkpcRessCvNyo/giphy.gif)
 ----
 #### But there's a better way
 ----
@@ -465,4 +498,6 @@ try(
 ```
 ---
 ## Processing Mouse Input/Output
+
+![](https://i.imgur.com/niEiPHD.gif)
 ---
