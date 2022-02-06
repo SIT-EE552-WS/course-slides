@@ -1,3 +1,6 @@
+---
+title: Lecture 3 - Strings and User Input/Output
+---
 # Lecture 3
 ## Strings and User Input/Output
 ---
@@ -90,7 +93,7 @@ arr2[6] = 6; // works now
 ### Back to Strings...
 - The `String` class defines many useful methods
 
-```java [1|1,3|1,4|1,5|1,6|1,7]
+```java [1|1,3|1,4|1,5|1,6|1,7|1,8]
 String str = "Hello World";
 
 str.length();         // 11
@@ -98,12 +101,13 @@ str.startsWith("H");  // true
 str.endsWith("z");    // false
 str.replace("e","a"); // "Hallo World"
 str.toUpperCase();    // "HELLO WORLD"
+str.split(" ");       // ["Hello", "World"]
 
 ```
 
 - Remember that the string is immutable so `toUpperCase` and `replace` return
   new strings
-- See the [Java API documentation](https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/String.html) for a full list
+- See the [Java API documentation](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html) for a full list
 
 ----
 ### Multi-line Strings
@@ -145,10 +149,10 @@ int j = Integer.parseInt("a"); // NumberFormatException
 String str1 = "Hello";
 String str2 = "Hello";
 
-str1 == str2 // is false!
+str1 == str2 // may be false!
 ```
 
-- Instead...use the `equals` method.  (We'll discuss that more in detail in a future lecture.)
+- Instead...use the `equals` method or even `equalsIgnoreCase`.  (We'll discuss that more in detail in a future lecture.)
 
 ```java 
 String str1 = "Hello";
@@ -157,6 +161,7 @@ String str3 = "Goodbye";
 
 str1.equals(str2); // true
 str1.equals(str3); // false
+str1.equalsIgnoreCase("HELLO"); // true
 
 ```
 ---
@@ -211,7 +216,7 @@ int i = sc.nextInt();
   as an array of bytes, inputs (and outputs) are 
   streams of bytes.
 - A stream is an ordered, unbounded sequence
-- [InputStream](https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/InputStream.html) is the base class
+- [InputStream](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/InputStream.html) is the base class
 
 ---
 ## File Input/Output
@@ -230,7 +235,7 @@ char[] buffer = new char[128];
 int numChars = src.read(buffer);
 ```
 - Managing buffers by hand is tedious, though so Java provides a
-  [`BufferedReader`](https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/io/BufferedReader.html).
+  [`BufferedReader`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/BufferedReader.html).
 
 ```java
 BufferedReader src = new BufferedReader(
@@ -247,7 +252,7 @@ src.readLine(); //reads a single line from the file
   in Java 1.1.  As of Java 7 and later, we can also do
 
 ```java
-import java.nio.charsets.StandardCharsets;
+import java.nio.charset.StandardCharsets;
 
 BufferedReader src = Files.newBufferedReader(
   Paths.get("/path/to/file.txt"),
@@ -286,7 +291,7 @@ try {
     Paths.get("/path/to/file.txt"),
     StandardCharsets.UTF_8
   );
-  src.readLine();
+  String line = src.readLine();
 } catch (IOException ioe){
   // do something to recover from the error
   ioe.printStackTrace();
@@ -311,7 +316,7 @@ try {
     Paths.get("/path/to/file.txt"),
     StandardCharsets.UTF_8
   );
-  src.readLine();
+  String line = src.readLine();
   src.close();
 } catch (IOException ioe){
   // do something to recover from the error
@@ -329,7 +334,7 @@ try {
     Paths.get("/path/to/file.txt"),
     StandardCharsets.UTF_8
   );
-  src.readLine();
+  String line = src.readLine();
 } catch (IOException ioe){
   // do something to recover from the error
   ioe.printStackTrace();
@@ -351,7 +356,7 @@ try {
     Paths.get("/path/to/file.txt"),
     StandardCharsets.UTF_8
   );
-  src.readLine();
+  String line = src.readLine();
 } catch (IOException ioe){
   // do something to recover from the error
   ioe.printStackTrace();
@@ -375,7 +380,7 @@ try(BufferedReader src =
     Paths.get("/path/to/file.txt"),
     StandardCharsets.UTF_8
   );) {
-  src.readLine();
+  String line = src.readLine();
 } catch (IOException ioe){
   // do something to recover from the error
   ioe.printStackTrace();
@@ -383,6 +388,23 @@ try(BufferedReader src =
 ```
 - AutoClosable means the resource is automatically
   closed for you
+----
+### Using Scanner with Files
+
+```java 
+try(BufferedReader src = 
+  Files.newBufferedReader(
+    Paths.get("/path/to/file.txt"),
+    StandardCharsets.UTF_8
+  );
+  Scanner scanner = new Scanner(src);
+  ) {
+  int num = scanner.nextInt();
+} catch (IOException ioe){
+  // do something to recover from the error
+  ioe.printStackTrace();
+}
+```
 ----
 ### Writing files is similar
 
