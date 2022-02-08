@@ -177,6 +177,42 @@ str1.equals(str3); // false
 str1.equalsIgnoreCase("HELLO"); // true
 
 ```
+----
+### String Concatenation
+
+- the plus operator (`+`) is used to join Strings and other
+  data types together
+
+```java
+String something = "ABC" + 123 + " " + 0.5;
+
+// something = "ABC123 0.5"
+```  
+- It behaves the same way that plus does for other types
+
+```java
+String s = "";
+s += "Hello";
+s += " ";
+s += "World";
+// s = "Hello World"
+```
+
+----
+### String Concatenation
+
+- But...remember strings are **immutable**
+- What plus is really doing is lots of expensive copy operations
+- To build up a long, complicated string, it's better to use a [StringBuilder](https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html)
+
+```java
+StringBuilder sb = new StringBuilder();
+sb.append("Hello");
+sb.append(" ");
+sb.append("World");
+String s = sb.toString();
+```
+
 ---
 ## How to Receive String Input Three Ways
 
