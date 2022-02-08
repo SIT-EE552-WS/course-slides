@@ -1,7 +1,7 @@
 ---
-title: Lecture 3 - Strings and User Input/Output
+title: Lecture 4 - Strings and User Input/Output
 ---
-# Lecture 3
+# Lecture 4
 ## Strings and User Input/Output
 ---
 ## Outline
