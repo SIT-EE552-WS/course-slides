@@ -67,13 +67,13 @@ arr1[6] = 6;
 // java.lang.ArrayIndexOutOfBoundsException: 
 //    Index 6 out of bounds for length 5
 
-int[] arr2 = int[10];
+int[] arr2 = new int[10];
 System.arraycopy(
-    someArr,       // source array to copy from
+    arr1   ,       // source array to copy from
     0,             // position to start copying
     arr2,          // destination array to copy to
     0,             // position to start pasting
-    someArr.length // number of elements to copy
+    arr1.length    // number of elements to copy
 )
 
 arr2[6] = 6; // works now
@@ -136,6 +136,7 @@ String longText = """
 ```
 - Text blocks measure indentation based on the 
   left of the first triple quote
+
 ----
 ### Strings and Other Data Types
 - You can convert other data types to `String` in 
@@ -288,7 +289,7 @@ int numChars = src.read(buffer);
 
 ```java
 BufferedReader src = new BufferedReader(
-   new FileReader("/path/to/file.txt");
+   new FileReader("/path/to/file.txt")
 );
 
 src.readLine(); //reads a single line from the file
@@ -373,6 +374,7 @@ public void someMethod() throws SomeException {
 ```
 - Incidentally, this is how the Java library indicates
   which methods will throw checked exceptions
+
 ----
 ### Read a File without Compiler Errors
 
@@ -483,7 +485,7 @@ try {
 #### But there's a better way
 ----
 ### Try-with-resources
-- Any object that implements `java.lang.AutoCloseable` can be used as a resource.
+- Any object that implements [java.lang.AutoCloseable](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/AutoCloseable.html) can be used as a resource.
 
 ```java 
 try(BufferedReader src = 
