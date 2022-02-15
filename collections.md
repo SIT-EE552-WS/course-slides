@@ -25,6 +25,8 @@ All explained in the [Javadoc](https://docs.oracle.com/en/java/javase/17/docs/ap
 - **[Set](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html)** - a _unique_ group of elements
 - **[Queue](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Queue.html)** - similar to a list but holds elements waiting for processing
 
+----
+
 ### Maps
 
 - Maps aren't exactly _collections_ but they're often thought of together
