@@ -1,4 +1,7 @@
-# Lecture 7
+---
+title: Lecture 6 - Objects Continued
+---
+# Lecture 6
 ## Objects Continued
 ---
 ## Outline
@@ -6,6 +9,7 @@
 - Comparable
 - The Builder Pattern
 - Object Factories
+- `record`s
 ---
 ## Equals and Hash Code
 
