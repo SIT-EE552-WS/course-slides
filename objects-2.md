@@ -206,7 +206,7 @@ public class Fraction {
   }
 
   @Override
-  pulblic boolean equals(Object o){ // ... }
+  public boolean equals(Object o){ // ... }
 
 }
 
@@ -232,7 +232,7 @@ public class Fraction {
   }
 
   @Override
-  pulblic boolean equals(Object o){ // ... }
+  public boolean equals(Object o){ // ... }
 }
 
 ```
@@ -259,7 +259,7 @@ public class Fraction {
   }
 
   @Override
-  pulblic boolean equals(Object o){ // ... }
+  public boolean equals(Object o){ // ... }
 }
 ```
 ----
@@ -381,7 +381,7 @@ public class Sandwich {
     String bread,
     String topping
   ) {
-    return this(null, cheese, bread, topping);
+    this(null, cheese, bread, topping);
   }
 }
 ```
@@ -518,4 +518,35 @@ Sandwich s2 = Sandwich
    static Sandwich vegan( String bread, String topping){
     return new Sandwich(null, null, bread, topping);
    }
+```
+---
+## Records
+
+- If you have a class that is immutable (all fields are `final`) and
+  all fields should be used for testing equality, you 
+  can write that class as a `record`
+
+```java
+public record Fraction(int numerator, int denominator){ }
+```
+
+----
+- Records give you implementation of `equals`, `hashCode` and `toString` for 
+  free
+- You can also define your own methods just like you would with a class
+
+```java
+public record Fraction(int numerator, int denominator){
+  public Fraction plus(Fraction other){
+    return new Fraction(
+      this.numerator * other.denominator + 
+        other.numerator * this.denominator,
+      this.denominator * other.denominator
+    )
+  }
+  
+  public double toDouble(){
+    return (double) this.numerator / this.denominator;
+  }
+ }
 ```
