@@ -15,77 +15,70 @@ title: Lecture 7 - Lambdas and the Streams API
 
 ```java
 /**
- * Find all multiples of three in a list
- */
-List<Integer> example1(List<Integer> source){
-    List<Integer> result  = new ArrayList<>();
-    for(Integer element : source){
-        if( element % 3 == 0){
+* Find all multiples of three in a list
+*/
+static List<Integer> example1(List<Integer> source) {
+    List<Integer> result = new ArrayList<>();
+    for (Integer element : source) {
+        if (element % 3 == 0) {
             result.add(element);
         }
     }
     return result;
 }
-
-
 
 /**
- * Find all multiples of five in a list
- */
-List<Integer> example2(List<Integer> source){
-    List<Integer> result  = new ArrayList<>();
-    for(Integer element : source){
-        if( element % 5 == 0){
+* Find all multiples of five in a list
+*/
+static List<Integer> example2(List<Integer> source) {
+    List<Integer> result = new ArrayList<>();
+    for (Integer element : source) {
+        if (element % 5 == 0) {
             result.add(element);
         }
     }
     return result;
 }
-
-
 
 /**
- * Find all numbers less than 50
- */
-List<Integer> example3(List<Integer> source){
-    List<Integer> result  = new ArrayList<>();
-    for(Integer element : source){
-        if( element < 50 ){
+* Find all numbers less than 50
+*/
+static List<Integer> example3(List<Integer> source) {
+    List<Integer> result = new ArrayList<>();
+    for (Integer element : source) {
+        if (element < 50) {
             result.add(element);
         }
     }
     return result;
 }
-
-
 
 /**
- * Find all words that start with the letter A
- */
-List<String> example4(List<String> source){
-    List<String> result  = new ArrayList<>();
-    for(String element : source){
-        if( element.startsWith("A") ){
+* Find all words that start with the letter A
+*/
+static List<String> example4(List<String> source) {
+    List<String> result = new ArrayList<>();
+    for (String element : source) {
+        if (element.startsWith("A")) {
             result.add(element);
         }
     }
     return result;
 }
-
-
 
 /**
- * Find all non-empty strings
- */
-List<String> example5(List<String> source){
-    List<String> result  = new ArrayList<>();
-    for(String element : source){
-        if( !element.isEmpty()   ){
+* Find all non-empty strings
+*/
+static List<String> example5(List<String> source) {
+    List<String> result = new ArrayList<>();
+    for (String element : source) {
+        if (!element.isEmpty()) {
             result.add(element);
         }
     }
     return result;
 }
+
 ```
 
 ----
@@ -93,119 +86,102 @@ List<String> example5(List<String> source){
 
 ```java
 /**
- * Double every element in a list
- */
-List<Integer> example1(List<Integer> source){
-    List<Integer> result  = new ArrayList<>();
-    for(Integer element : source){
-        int newElem = source * 2;
+* Double every element in a list
+*/
+static List<Integer> example1(List<Integer> source) {
+    List<Integer> result = new ArrayList<>();
+    for (Integer element : source) {
+        int newElem = element * 2;
         result.add(newElem);
     }
     return result;
 }
 
-
-
 /**
- * Multiply every element in a list by 10
- */
-List<Integer> example2(List<Integer> source){
-    List<Integer> result  = new ArrayList<>();
-    for(Integer element : source){
-        int newElem = source * 10;
+* Multiply every element in a list by 10
+*/
+static List<Integer> example2(List<Integer> source) {
+    List<Integer> result = new ArrayList<>();
+    for (Integer element : source) {
+        int newElem = element * 10;
         result.add(newElem);
     }
     return result;
 }
 
-
-
 /**
- * Add 5 to every element in a list
- */
-List<Integer> example3(List<Integer> source){
-    List<Integer> result  = new ArrayList<>();
-    for(Integer element : source){
-        int newElem = source + 5;
+* Add 5 to every element in a list
+*/
+static List<Integer> example3(List<Integer> source) {
+    List<Integer> result = new ArrayList<>();
+    for (Integer element : source) {
+        int newElem = element + 5;
         result.add(newElem);
     }
     return result;
 }
 
-
-
 /**
- * Extract the first three characters of each string
- */
-List<String> example4(List<String> source){
-    List<String> result  = new ArrayList<>();
-    for(String element : source){
+* Extract the first three characters of each string
+*/
+static List<String> example4(List<String> source) {
+    List<String> result = new ArrayList<>();
+    for (String element : source) {
         String newElem = element.substring(0, 3);
         result.add(newElem);
     }
     return result;
 }
 
-
-
 /**
- * Convert a list of strings to uppercase
- */
-List<String> example5(List<String> source){
-    List<String> result  = new ArrayList<>();
-    for(String element : source){
-        String newElem = source.toUpperCase();
+* Convert a list of strings to uppercase
+*/
+static List<String> example5(List<String> source) {
+    List<String> result = new ArrayList<>();
+    for (String element : source) {
+        String newElem = element.toUpperCase();
         result.add(newElem);
     }
     return result;
 }
-
-
 ```
 ----
 ## Summarizing Lists
 
 ```java
-/**
- * Find the sum of a list
- */
-int example1(List<Integer> source){
-    int result = 0;
-    for(Integer element : source){
-        result += element;
+    /**
+     * Find the sum of a list
+     */
+    static int example1(List<Integer> source) {
+        int result = 0;
+        for (Integer element : source) {
+            result += element;
+        }
+        return result;
     }
-    return result;
-}
 
-
-
-
-/**
- * Count the total number of characters in a list of
- * Strings
- */
-String example2(List<String> source){
-    int result = 0;
-    for(Integer element : source){
-        result += element.length();
+    /**
+     * Count the total number of characters in a list of
+     * Strings
+     */
+    static int example2(List<String> source) {
+        int result = 0;
+        for (String element : source) {
+            result += element.length();
+        }
+        return result;
     }
-    return result;
-}
 
-
-
-/**
- * Combine words into a longer string
- */
-String example3(List<String> source){
-    StringBuilder result = new StringBuilder();
-    for(Integer element : source){
-        result.append(element);
+    /**
+     * Combine words into a longer string
+     */
+    static String example3(List<String> source) {
+        StringBuilder result = new StringBuilder();
+        for (String element : source) {
+            result.append(element);
+        }
+        return result.toString();
     }
-    return result.toString();
-}
-
-
 
 ```
 ---
@@ -236,8 +212,6 @@ interface Filter<T> {
     boolean keep(T element);
 }
 
-
-
 List<T> filter(List<T> source, Filter<T> filter){
     List<Integer> result  = new ArrayList<>();
     for(Integer element : source){
@@ -248,70 +222,212 @@ List<T> filter(List<T> source, Filter<T> filter){
     return result;
 }
 
-
-
 List<Integer> result1 = filter(
-    intSource,
-    new Filter<Integer>(){
-        @Override
-        public boolean keep(Integer i){
-            return i % 3 == 0;
-        }
-    }
-);
-
-
+        intSource,
+        new Filter<Integer>() {
+            @Override
+            public boolean keep(Integer i) {
+                return i % 3 == 0;
+            }
+        });
 
 List<Integer> result2 = filter(
-    intSource,
-    new Filter<Integer>(){
-        @Override
-        public boolean keep(Integer i){
-            return i % 5 == 0;
-        }
-    }
-);
-
-
+        intSource,
+        new Filter<Integer>() {
+            @Override
+            public boolean keep(Integer i) {
+                return i % 5 == 0;
+            }
+        });
 
 List<Integer> result3 = filter(
-    intSource,
-    new Filter<Integer>(){
-        @Override
-        public boolean keep(Integer i){
-            return i < 50;
-        }
-    }
-)
-
-
+        intSource,
+        new Filter<Integer>() {
+            @Override
+            public boolean keep(Integer i) {
+                return i < 50;
+            }
+        });
 
 List<String> result4 = filter(
-    strSource,
-    new Filter<String>(){
-        @Override
-        public boolean keep(String i){
-            return i.startsWith("A");
-        }
-    }
-)
-
-
+        strSource,
+        new Filter<String>() {
+            @Override
+            public boolean keep(String i) {
+                return i.startsWith("A");
+            }
+        });
 
 List<String> result5 = filter(
-    strSource,
-    new Filter<String>(){
-        @Override
-        public boolean keep(String i){
-            return !i.isEmpty();
-        }
+        strSource,
+        new Filter<String>() {
+            @Override
+            public boolean keep(String i) {
+                return !i.isEmpty();
+            }
+        });
+
+```
+----
+## Transforming with Anonymous Classes
+
+```java
+interface Transformer<T, R> {
+    R transform(T element);
+}
+
+static <T, R> List<R> baseTransform(List<T> source, Transformer<T, R> transformer) {
+    List<R> result = new ArrayList<>();
+    for (T element : source) {
+        R newElem = transformer.transform(element);
+        result.add(newElem);
     }
-)
+    return result;
+}
 
+/**
+* Double every element in a list
+*/
+static List<Integer> example1(List<Integer> source) {
+    Transformer<Integer, Integer> transformer = new Transformer<>() {
 
+        @Override
+        public Integer transform(Integer element) {
+            return element * 2;
+        }
+
+    };
+
+    return baseTransform(source, transformer);
+}
+
+/**
+* Multiply every element in a list by 10
+*/
+static List<Integer> example2(List<Integer> source) {
+    Transformer<Integer, Integer> transformer = new Transformer<>() {
+
+        @Override
+        public Integer transform(Integer element) {
+            return element * 10;
+        }
+
+    };
+    return baseTransform(source, transformer);
+}
+
+/**
+* Add 5 to every element in a list
+*/
+static List<Integer> example3(List<Integer> source) {
+
+    Transformer<Integer, Integer> transformer = new Transformer<>() {
+
+        @Override
+        public Integer transform(Integer element) {
+            return element + 5;
+        }
+
+    };
+    return baseTransform(source, transformer);
+}
+
+/**
+* Extract the first three characters of each string
+*/
+static List<String> example4(List<String> source) {
+    Transformer<String, String> transformer = new Transformer<>(){
+
+        @Override
+        public String transform(String element) {
+            return element.substring(0, 3);
+        }
+
+    };
+
+    return baseTransform(source, transformer);
+}
+
+/**
+* Convert a list of strings to uppercase
+*/
+static List<String> example5(List<String> source) {
+    Transformer<String, String> transformer = new Transformer<>(){
+
+        @Override
+        public String transform(String element) {
+            return element.toUpperCase();
+        }
+
+    };
+    return baseTransform(source, transformer);
+}
+
+static List<Integer> example6(List<String> source){
+    Transformer<String, Integer> transformer = new Transformer<>(){
+
+        @Override
+        public Integer transform(String element) {
+            return element.length();
+        }
+
+    };
+
+    return baseTransform(source, transformer);
+}
 
 ```
 
+----
+## Summarizing with Anonymous Classes
+
+```java
+interface Summarizer<T, R> {
+    R summarize(R acc, T element);
+}
+
+static <T,R> R baseSummarize(
+    List<T> source, 
+    R initialValue, 
+    Summarizer<T, R> summarizer
+) {
+    R result = initialValue;
+    for (T element : source) {
+        result = summarizer.summarize(result, element);
+    }
+    return result;
+}
+
+/**
+* Find the sum of a list
+*/
+static int example1(List<Integer> source) {
+    Summarizer<Integer, Integer> summarizer = (acc, element) -> acc + element;
+    int initialValue = 0;
+    return baseSummarize(source, initialValue, summarizer);
+}
+
+/**
+* Count the total number of characters in a list of
+* Strings
+*/
+static int example2(List<String> source) {
+    Summarizer<String, Integer> summarizer = (acc, element) -> acc + element.length();
+
+    int initialValue = 0;
+    return baseSummarize(source, initialValue, summarizer);
+}
+
+/**
+* Combine words into a longer string
+*/
+static String example3(List<String> source) {
+    Summarizer<String, StringBuilder> summarizer = (acc, element) -> acc.append(element);
+    StringBuilder initialValue = new StringBuilder();
+    return baseSummarize(source, initialValue, summarizer).toString();
+}
+
+```
 ---
  ## Lambda Expressions
 
@@ -351,7 +467,6 @@ List<Integer> result2 = filter(
      * `T apply(T t)`
 - The rest can be found in [java.util.function](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/package-summary.html)
 
-
 ----
 ## Method References
 
@@ -389,7 +504,7 @@ f2.apply(5.6);  // returns 6.0
 List<Integer> result = intSource
     .stream()
     .filter(i -> i % 3 == 0)
-    .collect(Collectors.toList());    
+    .toList();    
 ```
 
 ----
@@ -399,7 +514,7 @@ List<Integer> result = intSource
 List<Integer> result = intSource
     .stream()
     .map(i -> i * 5)
-    .collect(Collectors.toList());    
+    .toList();    
 ```
 
 ----
@@ -409,6 +524,14 @@ List<Integer> result = intSource
 int result = intSource
     .stream()
     .reduce(0, (a,b) -> a + b);    
+
+String result2 = strSource
+    .stream()
+    .reduce(
+        new StringBuilder(), 
+        (acc, el)->acc.append(el), 
+        (sb1, sb2)->sb1.append(sb2)
+    ).toString();
 ```
 
 ----
@@ -469,7 +592,12 @@ source
 
 ```java
 IntStream
-    .range(0, 10)
+    .range(0, 10) // 0, 1, ... 9
+    .map( x -> x * 2)
+    .reduce(0, Integer::sum);
+    
+IntStream
+    .rangeClosed(0, 10) // 0, 1, ... 10
     .map( x -> x * 2)
     .reduce(0, Integer::sum);
 
