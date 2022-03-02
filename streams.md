@@ -208,7 +208,8 @@ Something something = new Something() {
 ## Filtering with Anonymous Classes
 
 ```java
-interface Filter<T> {
+    
+    interface Filter<T> {
         boolean keep(T element);
     }
 
