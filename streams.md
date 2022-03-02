@@ -209,65 +209,83 @@ Something something = new Something() {
 
 ```java
 interface Filter<T> {
-    boolean keep(T element);
-}
-
-List<T> filter(List<T> source, Filter<T> filter){
-    List<Integer> result  = new ArrayList<>();
-    for(Integer element : source){
-        if( filter.keep(element )){
-            result.add(element);
-        }
+        boolean keep(T element);
     }
-    return result;
-}
 
-List<Integer> result1 = filter(
-        intSource,
-        new Filter<Integer>() {
-            @Override
-            public boolean keep(Integer i) {
-                return i % 3 == 0;
+    static <T> List<T> example(List<T> source, Filter<T> filter) {
+        List<T> result = new ArrayList<>();
+        for (T element : source) {
+            if (filter.keep(element)) {
+                result.add(element);
             }
-        });
+        }
+        return result;
+    }
 
-List<Integer> result2 = filter(
-        intSource,
-        new Filter<Integer>() {
-            @Override
-            public boolean keep(Integer i) {
-                return i % 5 == 0;
+    /**
+     * Find all multiples of three in a list
+     */
+    static List<Integer> example1(List<Integer> source) {
+        List<Integer> result = new ArrayList<>();
+        for (Integer element : source) {
+            if (element % 3 == 0) {
+                result.add(element);
             }
-        });
+        }
+        return result;
+    }
 
-List<Integer> result3 = filter(
-        intSource,
-        new Filter<Integer>() {
-            @Override
-            public boolean keep(Integer i) {
-                return i < 50;
+    /**
+     * Find all multiples of five in a list
+     */
+    static List<Integer> example2(List<Integer> source) {
+        List<Integer> result = new ArrayList<>();
+        for (Integer element : source) {
+            if (element % 5 == 0) {
+                result.add(element);
             }
-        });
+        }
+        return result;
+    }
 
-List<String> result4 = filter(
-        strSource,
-        new Filter<String>() {
-            @Override
-            public boolean keep(String i) {
-                return i.startsWith("A");
+    /**
+     * Find all numbers less than 50
+     */
+    static List<Integer> example3(List<Integer> source) {
+        List<Integer> result = new ArrayList<>();
+        for (Integer element : source) {
+            if (element < 50) {
+                result.add(element);
             }
-        });
+        }
+        return result;
+    }
 
-List<String> result5 = filter(
-        strSource,
-        new Filter<String>() {
-            @Override
-            public boolean keep(String i) {
-                return !i.isEmpty();
+    /**
+     * Find all words that start with the letter A
+     */
+    static List<String> example4(List<String> source) {
+        List<String> result = new ArrayList<>();
+        for (String element : source) {
+            if (element.startsWith("A")) {
+                result.add(element);
             }
-        });
+        }
+        return result;
+    }
 
-```
+    /**
+     * Find all non-empty strings
+     */
+    static List<String> example5(List<String> source) {
+        List<String> result = new ArrayList<>();
+        for (String element : source) {
+            if (!element.isEmpty()) {
+                result.add(element);
+            }
+        }
+        return result;
+    }
 ----
 ## Transforming with Anonymous Classes
 
