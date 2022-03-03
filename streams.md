@@ -205,88 +205,99 @@ Something something = new Something() {
 ```
 
 ----
+
 ## Filtering with Anonymous Classes
 
 ```java
     
-    interface Filter<T> {
-        boolean keep(T element);
+interface Filter<T> {
+    boolean keep(T element);
+}
+
+static <T> List<T> baseFilter(
+    List<T> source, 
+    Filter<T> filter
+) {
+    List<T> result = new ArrayList<>();
+    for (T element : source) {
+        if (filter.keep(element)) {
+            result.add(element);
+        }
+    }
+    return result;
+}
+
+/**
+* Find all multiples of three in a list
+*/
+static List<Integer> example1(List<Integer> source) {
+    Filter<Integer> filter = new Filter<>(){
+        @Override
+        public boolean keep(Integer element){
+            return element % 3 == 0;
+        }
     }
 
-    static <T> List<T> example(List<T> source, Filter<T> filter) {
-        List<T> result = new ArrayList<>();
-        for (T element : source) {
-            if (filter.keep(element)) {
-                result.add(element);
-            }
+    return baseFilter(source, filter);
+}
+
+/**
+* Find all multiples of five in a list
+*/
+static List<Integer> example2(List<Integer> source) {
+    Filter<Integer> filter = new Filter<>(){
+        @Override
+        public boolean keep(Integer element){
+            return element % 5 == 0;
         }
-        return result;
     }
 
-    /**
-     * Find all multiples of three in a list
-     */
-    static List<Integer> example1(List<Integer> source) {
-        List<Integer> result = new ArrayList<>();
-        for (Integer element : source) {
-            if (element % 3 == 0) {
-                result.add(element);
-            }
+    return baseFilter(source, filter);
+}
+
+/**
+* Find all numbers less than 50
+*/
+static List<Integer> example3(List<Integer> source) {
+    Filter<Integer> filter = new Filter<>(){
+        @Override
+        public boolean keep(Integer element){
+            return element < 50;
         }
-        return result;
     }
 
-    /**
-     * Find all multiples of five in a list
-     */
-    static List<Integer> example2(List<Integer> source) {
-        List<Integer> result = new ArrayList<>();
-        for (Integer element : source) {
-            if (element % 5 == 0) {
-                result.add(element);
-            }
+    return baseFilter(source, filter);
+}
+
+/**
+* Find all words that start with the letter A
+*/
+static List<String> example4(List<String> source) {
+    Filter<String> filter = new Filter<>(){
+        @Override
+        public boolean keep(String element){
+            return element.startsWith("A");
         }
-        return result;
     }
 
-    /**
-     * Find all numbers less than 50
-     */
-    static List<Integer> example3(List<Integer> source) {
-        List<Integer> result = new ArrayList<>();
-        for (Integer element : source) {
-            if (element < 50) {
-                result.add(element);
-            }
+    return baseFilter(source, filter);
+}
+
+/**
+* Find all non-empty strings
+*/
+static List<String> example5(List<String> source) {
+    Filter<String> filter = new Filter<>(){
+        @Override
+        public boolean keep(String element){
+            return !element.isEmpty();
         }
-        return result;
     }
 
-    /**
-     * Find all words that start with the letter A
-     */
-    static List<String> example4(List<String> source) {
-        List<String> result = new ArrayList<>();
-        for (String element : source) {
-            if (element.startsWith("A")) {
-                result.add(element);
-            }
-        }
-        return result;
-    }
+    return baseFilter(source, filter);
+}
 
-    /**
-     * Find all non-empty strings
-     */
-    static List<String> example5(List<String> source) {
-        List<String> result = new ArrayList<>();
-        for (String element : source) {
-            if (!element.isEmpty()) {
-                result.add(element);
-            }
-        }
-        return result;
-    }
+```
 ----
 ## Transforming with Anonymous Classes
 
@@ -295,7 +306,10 @@ interface Transformer<T, R> {
     R transform(T element);
 }
 
-static <T, R> List<R> baseTransform(List<T> source, Transformer<T, R> transformer) {
+static <T, R> List<R> baseTransform(
+    List<T> source, 
+    Transformer<T, R> transformer
+) {
     List<R> result = new ArrayList<>();
     for (T element : source) {
         R newElem = transformer.transform(element);
@@ -308,7 +322,8 @@ static <T, R> List<R> baseTransform(List<T> source, Transformer<T, R> transforme
 * Double every element in a list
 */
 static List<Integer> example1(List<Integer> source) {
-    Transformer<Integer, Integer> transformer = new Transformer<>() {
+    Transformer<Integer, Integer> transformer = 
+    new Transformer<>() {
 
         @Override
         public Integer transform(Integer element) {
@@ -324,7 +339,8 @@ static List<Integer> example1(List<Integer> source) {
 * Multiply every element in a list by 10
 */
 static List<Integer> example2(List<Integer> source) {
-    Transformer<Integer, Integer> transformer = new Transformer<>() {
+    Transformer<Integer, Integer> transformer = 
+    new Transformer<>() {
 
         @Override
         public Integer transform(Integer element) {
@@ -340,7 +356,8 @@ static List<Integer> example2(List<Integer> source) {
 */
 static List<Integer> example3(List<Integer> source) {
 
-    Transformer<Integer, Integer> transformer = new Transformer<>() {
+    Transformer<Integer, Integer> transformer = 
+    new Transformer<>() {
 
         @Override
         public Integer transform(Integer element) {
@@ -355,7 +372,8 @@ static List<Integer> example3(List<Integer> source) {
 * Extract the first three characters of each string
 */
 static List<String> example4(List<String> source) {
-    Transformer<String, String> transformer = new Transformer<>(){
+    Transformer<String, String> transformer = 
+    new Transformer<>(){
 
         @Override
         public String transform(String element) {
@@ -371,7 +389,8 @@ static List<String> example4(List<String> source) {
 * Convert a list of strings to uppercase
 */
 static List<String> example5(List<String> source) {
-    Transformer<String, String> transformer = new Transformer<>(){
+    Transformer<String, String> transformer = 
+    new Transformer<>(){
 
         @Override
         public String transform(String element) {
@@ -383,7 +402,8 @@ static List<String> example5(List<String> source) {
 }
 
 static List<Integer> example6(List<String> source){
-    Transformer<String, Integer> transformer = new Transformer<>(){
+    Transformer<String, Integer> transformer = 
+    new Transformer<>(){
 
         @Override
         public Integer transform(String element) {
@@ -421,7 +441,8 @@ static <T,R> R baseSummarize(
 * Find the sum of a list
 */
 static int example1(List<Integer> source) {
-    Summarizer<Integer, Integer> summarizer = (acc, element) -> acc + element;
+    Summarizer<Integer, Integer> summarizer = 
+        (acc, element) -> acc + element;
     int initialValue = 0;
     return baseSummarize(source, initialValue, summarizer);
 }
@@ -431,7 +452,8 @@ static int example1(List<Integer> source) {
 * Strings
 */
 static int example2(List<String> source) {
-    Summarizer<String, Integer> summarizer = (acc, element) -> acc + element.length();
+    Summarizer<String, Integer> summarizer = 
+        (acc, element) -> acc + element.length();
 
     int initialValue = 0;
     return baseSummarize(source, initialValue, summarizer);
@@ -441,9 +463,14 @@ static int example2(List<String> source) {
 * Combine words into a longer string
 */
 static String example3(List<String> source) {
-    Summarizer<String, StringBuilder> summarizer = (acc, element) -> acc.append(element);
+    Summarizer<String, StringBuilder> summarizer = 
+        (acc, element) -> acc.append(element);
     StringBuilder initialValue = new StringBuilder();
-    return baseSummarize(source, initialValue, summarizer).toString();
+    return baseSummarize(
+            source, 
+            initialValue, 
+            summarizer
+        ).toString();
 }
 
 ```
