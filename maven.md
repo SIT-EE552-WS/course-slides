@@ -2,9 +2,9 @@
 ## Building Complex Projects
 ---
 ## Outline
-- External Dependencies
-- Structuring Projects
-- Tools for Building Projects
-- Tools for Testing Projects
-- Your Final Projects
+- Final Projects and other comments
+- External Dependencies (a short case study)
+- Why Maven?
+- What is Maven?
+- Testing Complex Projects with J-Unit
 
