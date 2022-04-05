@@ -1,3 +1,6 @@
+---
+title: Lecture 11 - Web Programming in Java
+---
 # Lecture 11
 ## Web Programming in Java
 ---
@@ -10,6 +13,8 @@
 ---
 ## How Do Web Servers Work (HTTP)
 
+----
+![HTTP](image3.png)
 ----
 ### The HTTP Protocol
 
@@ -170,7 +175,6 @@ public class HelloWorld extends HttpServlet {
 }
 
 ```
-----
 
 
 
