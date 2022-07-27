@@ -2,10 +2,14 @@
 title: Lecture 1 - Introduction to Java
 ---
 # Lecture 1
+
 ## Introduction to Java
+
 > Use the arrow keys or the icons at the bottom right to navigate
 ---
+
 ## Outline
+
 - Quick Overview of the Syllabus
 - What is Java?
 - MIT’s Processing Language
@@ -22,32 +26,34 @@ title: Lecture 1 - Introduction to Java
 
 ----
 
-## What is Java?
-
 - Java consists of three parts:
   - The Java Virtual Machine (JVM)
   - The Java Language
   - The Java Standard Library
 
 ----
+
 ### The Java Virtual Machine
 
-  - Java was designed to be a "write once, run anywhere" language
+- Java was designed to be a "write once, run anywhere" language
 
-  - Unlike C/C++, which are compiled to machine code that runs directly
+- Unlike C/C++, which are compiled to machine code that runs directly
   on your processor, Java programs are compiled to _byte-code_ that can
   run on the JVM
 
 ----
+
 ### The Java Virtual Machine
-  - The
+
+- The
   [JVM](https://docs.oracle.com/en/java/javase/17/vm/java-virtual-machine-technology-overview.html) consists of
-    - an adaptive compiler that converts Java into bytecode and, at runtime,
+  - an adaptive compiler that converts Java into bytecode and, at runtime,
     continues to optimize the program based on real usage
-    - memory management including allocations and garbage collection
-    - multithreading and concurrency support
+  - memory management including allocations and garbage collection
+  - multithreading and concurrency support
 
 ----
+
 ### The Java Language
 
   Java only has 50 keywords, and some of those are reserved but not used.
@@ -67,25 +73,28 @@ title: Lecture 1 - Introduction to Java
   | const | float | native | super | while |
 
 ----
+
 ### The Java Language
 
-  - The [Java Language
-  Specification](https://docs.oracle.com/javase/specs/jls/se17/html/index.html) 
+- The [Java Language
+  Specification](https://docs.oracle.com/javase/specs/jls/se17/html/index.html)
   describes the full set of rules for the language including:
-    - Types, Values, Variables
-    - Names and Identifiers
-    - Classes, Interfaces, Arrays, and Exceptions
-    - Blocks, Statements, and Patterns
-    - Expressions
+  - Types, Values, Variables
+  - Names and Identifiers
+  - Classes, Interfaces, Arrays, and Exceptions
+  - Blocks, Statements, and Patterns
+  - Expressions
 
 ----
+
 ### The Java Language
 
-  - Although this may seem very complex, the full language specification is 
+- Although this may seem very complex, the full language specification is
   made for people who develop the language itself.
-  - We will mostly learn the grammar of the language through example
+- We will mostly learn the grammar of the language through example
 
 ----
+
 ### The Java Standard Library
 
 - The [Java Standard
@@ -99,36 +108,39 @@ use in our programs including
   - Security primitives (cryptography, access control, etc.)
 
 ----
+
 ### The Java Standard Library
 
-  - When starting to write something, always check if maybe the standard library
+- When starting to write something, always check if maybe the standard library
   did it already...
 
 ----
+
 ### The Evolution of Java
 
-  - Java is constantly growing and changing - now, more quickly than ever.
+- Java is constantly growing and changing - now, more quickly than ever.
 
 ![Java Timeline](Java_Timeline.png)
 
-
 ---
+
 ## There is a lot that can be learned
 
 ---
   ![Java Mind Map](https://user-images.githubusercontent.com/40702606/128173820-1402ea9d-03a3-4453-b96e-6b147a2c2043.png)
-Source: https://www.youtube.com/c/amigoscode/
+Source: <https://www.youtube.com/c/amigoscode/>
 
 ---
+
 ## MIT's Processing Language
 
-  - [Processing](https://processing.org/) is a kind of Java sketchbook developed
+- [Processing](https://processing.org/) is a kind of Java sketchbook developed
   by MIT.
-  - It's aimed at visual artists, but it is a good tool for learning the Java
+- It's aimed at visual artists, but it is a good tool for learning the Java
   syntax without all the "ceremony"
 
-
 ---
+
 ## Java Data Types
 
   | Name|Default Value|Description |

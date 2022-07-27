@@ -1,5 +1,7 @@
 ## Step 1
+
 - How would you do this by hand without any loops?
+
 ```java
 System.out.println(1);    // 2^0
 System.out.println(2);    // 2^1
@@ -8,9 +10,13 @@ System.out.println(8);    // 2^3
 // ...
 System.out.println(4096); // 2^12
 ```
+
 ---
+
 ## Step 2
+
 - Since Java doesn't have an exponent operator, what's another way to express this?
+
 ```java
 System.out.println(1);    // 2^0
 System.out.println(1*2);    // 2^1
@@ -19,10 +25,15 @@ System.out.println(1*2*2*2);    // 2^3
 // ...
 System.out.println(1*2*2*2*2*2*2*2*2*2*2*2*2); // 2^12
 ```
+
 ---
+
 ## Step 3
-- Now, extract out a variable.  Nothing has changed at this point, just a third way to express the same thing.
+
+- Now, extract out a variable.  Nothing has changed at this point, just a third
+  way to express the same thing.
 - Here `pow` is a stand-in for the value 1.
+
 ```java
 int pow = 1;
 System.out.println(pow);    // 2^0
@@ -32,10 +43,15 @@ System.out.println(pow*2*2*2);    // 2^3
 // ...
 System.out.println(pow*2*2*2*2*2*2*2*2*2*2*2*2); // 2^12
 ```
+
 ---
+
 ## Step 4
+
 - But...notice that each expression contains the previous expression.  
-- If we allow `pow` to change, we can make it so that each call to print looks the same.
+- If we allow `pow` to change, we can make it so that each call to print looks
+  the same.
+
 ```java
 int pow = 1;                // 2^0
 System.out.println(pow);    
@@ -49,14 +65,19 @@ System.out.println(pow);
 pow = pow * 2;              // 2^11 * 2 = 2^12
 System.out.println(pow); 
 ```
+
 ---
+
 ## Step 5
-- Now we have a set of two lines that repeat, 
+
+- Now we have a set of two lines that repeat,
+
 ```java
     System.out.println(pow); 
     pow = pow * 2;   
 ```
-we can rewrite this with a loop. 
+
+we can rewrite this with a loop.
 
 - Notice that we increase the value of `pow` _after_ printing it.
 
@@ -67,10 +88,14 @@ for(int i = 0; pow < 4097; i++>){
     pow = pow * 2;   
 }
 ```
+
 ---
+
 ## Step 6
-- That last bit of code will work, but it can be simplified. 
+
+- That last bit of code will work, but it can be simplified.
 - The for loop declaration has three parts:
+
 ```java
 for(
     int i = 0;  
@@ -81,10 +106,14 @@ for(
     // This statement is executed every time the loop runs
 ){ }
 ```
+
 ---
+
 ## Step 7
-- Incidentally, notice that we never use the variable `i` directly.  Although `i` is traditionally used in a for loop, there's nothing special about it.  We can just use `pow` directly
-to simplify the loop.
+
+- Incidentally, notice that we never use the variable `i` directly.  Although
+  `i` is traditionally used in a for loop, there's nothing special about it.  We
+  can just use `pow` directly to simplify the loop.
 
 ```java
 for(
@@ -98,8 +127,11 @@ for(
     System.out.println(pow);
 }
 ```
+
 ---
+
 ## Step 8
+
 - Or written in the usual style
 
 ```java

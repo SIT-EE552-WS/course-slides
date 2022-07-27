@@ -2,15 +2,21 @@
 title: Lecture 6 - Objects Continued
 ---
 # Lecture 6
+
 ## Objects Continued
+
 ---
+
 ## Outline
+
 - Equals and Hash Code
 - Comparable
 - The Builder Pattern
 - Object Factories
 - `record`s
+
 ---
+
 ## Equals and Hash Code
 
 - **Recall:** a `Set` is a collection that cannot contain duplicate items.
@@ -25,17 +31,21 @@ fractions.add(new Fraction(3,4));
 System.out.println(fractions.size());
 
 ```
+
 ----
-### The answer should be 2...
+
+### The answer should be 2
+
 ----
-### But the answer is 3.
+
+### But the answer is 3
 
 Why?
 ----
 
 - Here is a simplified version of the `Fraction` class
 
-```java 
+```java
 public class Fraction {
   public int numerator;
   public int denominator;
@@ -59,7 +69,9 @@ if(f1 == f2){
 }
 
 ```
+
 ----
+
 ### Nothing
 
 - When `==` is applied to Objects it is actually comparing their address in memory.
@@ -79,6 +91,7 @@ if(f1.equals(f2)){
 }
 
 ```
+
 ----
 
 ### This still won't print anything
@@ -87,7 +100,7 @@ But we're getting closer
 
 ----
 
-The default implementation of `equals` also compares addresses in memory, 
+The default implementation of `equals` also compares addresses in memory,
 
 but...  
 
@@ -100,7 +113,6 @@ but...
 Subclasses can **override** methods from their superclass
 
 ----
-
 
 ```java [10-19]
 public class Fraction {
@@ -128,8 +140,8 @@ public class Fraction {
 ```
 
 ----
-### Finally
 
+### Finally
 
 ```java
 
@@ -171,6 +183,7 @@ System.out.println(fractions.size());
 - Again, this is a method on the `Object` class, which our objects can override
 
 ----
+
 ### The Rules of Hash Codes
 
 1. If `hashCode()` is called twice on the same object, it **must** return the same
@@ -188,6 +201,7 @@ also.](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Ob
 ### Some options
 
 ----
+
 ### Always return the same number
 
 ```java [10-13]
@@ -236,6 +250,7 @@ public class Fraction {
 }
 
 ```
+
 ----
 
 ### More efficient using prime numbers
@@ -262,10 +277,13 @@ public class Fraction {
   public boolean equals(Object o){ // ... }
 }
 ```
+
 ----
+
 ### That last one can be automatically generated even for non-integer fields
 
 ---
+
 ## Sorting and Comparing Objects
 
 ```java
@@ -279,7 +297,8 @@ Collections.sort(l);
 
 ----
 
-### Error: 
+### Error
+
 No suitable method found for `sort(java.util.ArrayList<Fraction>)`
 
 ----
@@ -291,9 +310,9 @@ public static <T extends Comparable<? super T>> void sort(
    List<T> list
 )
 ```
+
 - The important part is that the generic type `T` must extend something called
 `Comparable`
-
 
 ----
 
@@ -312,6 +331,7 @@ interface Comparable<T> {
 
 }
 ```
+
 ----
 
 ```java [1,10-13]
@@ -332,6 +352,7 @@ public class Fraction implements Comparable<Fraction>{
 ```
 
 ---
+
 ## Making more complex objects
 
 ----
@@ -385,6 +406,7 @@ public class Sandwich {
   }
 }
 ```
+
 ----
 
 ## But what if multiple parameters are optional?
@@ -409,7 +431,6 @@ public class Sandwich {
 ----
 
 ## The Builder Pattern
-
 
 ```java
 public class Sandwich {
@@ -466,10 +487,10 @@ public class Sandwich {
   }
 }
 ```
+
 ----
 
 ## How do we use it?
-
 
 ```java
 
@@ -492,7 +513,7 @@ Sandwich s2 = Sandwich
 
 ## Wait...where was the "new" keyword?
 
-- A factory method is a pattern for creating objects without directly 
+- A factory method is a pattern for creating objects without directly
   calling the constructors
 
 ```java
@@ -519,11 +540,13 @@ Sandwich s2 = Sandwich
     return new Sandwich(null, null, bread, topping);
    }
 ```
+
 ---
+
 ## Records
 
 - If you have a class that is immutable (all fields are `final`) and
-  all fields should be used for testing equality, you 
+  all fields should be used for testing equality, you
   can write that class as a `record`
 
 ```java
@@ -531,7 +554,8 @@ public record Fraction(int numerator, int denominator){ }
 ```
 
 ----
-- Records give you implementation of `equals`, `hashCode` and `toString` for 
+
+- Records give you implementation of `equals`, `hashCode` and `toString` for
   free
 - You can also define your own methods just like you would with a class
 
@@ -550,3 +574,4 @@ public record Fraction(int numerator, int denominator){
   }
  }
 ```
+
