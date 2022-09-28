@@ -33,7 +33,7 @@ title: Lecture 4 - Strings and User Input/Output
 ## What is a String in Java?
 
 - A `String` is an object
-- A `String` is an **immutable** array of `char`
+- A `String` contains an **immutable** array of `char`
 
 ```java
 String str = "abc";
@@ -102,7 +102,7 @@ with arrays
 ```java
 int[] arr1 = {1, 2, 3, 4, 5}; 
 
-for(int i = 0; i < arr1.length; ++){
+for(int i = 0; i < arr1.length; i++){
   int current = arr1[i];
   // do something 
 }
@@ -118,6 +118,20 @@ for(int i = 0; i < arr1.length; ++){
 - It's a good idea to _always_ consider character
   encoding when working with strings.
 - [Example](https://www.rapidtables.com/code/text/ascii-table.html)
+
+----
+
+### Back to Strings
+
+- Strings are unicode by default, meaning you can represent many characters
+
+```java
+String s1 = "Hello";
+String s2 = "你好";
+String s3 = "Здравствуйте";
+String s4 = "नमस्ते";
+String s5 = "👋👋👋☕";
+```
 
 ----
 
@@ -147,7 +161,7 @@ str.split(" ");       // ["Hello", "World"]
 
 ### Multi-line Strings
 
-- **Text Blocks** were introduced to Java in version 14.
+- **Text Blocks** were introduced to Java as in version 14 (preview) and Java 15 (general availability).
 
 ```java
 
@@ -185,13 +199,14 @@ int j = Integer.parseInt("a"); // NumberFormatException
 
 ### Testing for Equality
 
-- Since strings are objects, you cannot use `==` to compare them
+- You cannot use `==` to compare them. This actually compares their addresses 
+  in memory.
 
 ```java
-String str1 = "Hello";
-String str2 = "Hello";
+String str1 = new String("Hello");
+String str2 = new String("Hello");
 
-str1 == str2 // may be false!
+str1 == str2 // is false!
 ```
 
 - Instead...use the `equals` method or `equalsIgnoreCase`
@@ -236,7 +251,7 @@ s += "World";
 
 - But...remember strings are **immutable**
 - What plus is really doing is lots of expensive copy operations
-- To build up a long, complicated string, it's better to use a [StringBuilder](https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html)
+- To build up a long, complicated string, it's better to use a [StringBuilder](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/StringBuilder.html)
 
 ```java
 StringBuilder sb = new StringBuilder();
@@ -280,7 +295,7 @@ Hello, Frank
 
 ### Scanners
 
-- A [Scanner](https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/Scanner.html)
+- A [Scanner](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Scanner.html)
   is a simple text scanner which can parse primitive types and strings using
   regular expressions.
 
@@ -294,7 +309,7 @@ int i = sc.nextInt();
 ```
 
 - By default, a scanner assumes tokens are separated by
-  new lines
+  whitespace
 
 ----
 
