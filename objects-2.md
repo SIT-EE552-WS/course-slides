@@ -564,7 +564,7 @@ public enum DayOfWeek {
 
 ### Enums (continued)
 
-An enum is a full class, and declaring an enum is equivalent to:
+& An enum is a full class, and declaring an enum is equivalent to:
 
 ```java
 
@@ -579,7 +579,7 @@ public class DayOfWeek {
 
 ----
 
-Because enums are full classes, they can also contain fields and methods
+* Because enums are full classes, they can also contain fields and methods
 
 ```java 
 public enum DayOfWeek {
@@ -599,16 +599,12 @@ public enum DayOfWeek {
     public String toString(){
         return this.abbreviation;
     }
-    
-     public static final DayOfWeek SUNDAY = new DayOfWeek("Sun.");
-     public static final DayOfWeek MONDAY = new DayOfWeek("Mon.");
-     // etc...
 }
 ```
 
 ----
 
-Which is equivalend to 
+Which is equivalent to 
 
 ```java
 
@@ -621,6 +617,10 @@ public class DayOfWeek {
     public String toString(){
         return this.abbreviation;
     }
+   
+    public static final DayOfWeek SUNDAY = new DayOfWeek("Sun.");
+    public static final DayOfWeek MONDAY = new DayOfWeek("Mon.");
+    // etc...
 }
 
 ```
