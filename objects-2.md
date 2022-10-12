@@ -564,7 +564,7 @@ public enum DayOfWeek {
 
 ### Enums (continued)
 
-& An enum is a full class, and declaring an enum is equivalent to:
+* An enum is a full class, and declaring an enum is equivalent to:
 
 ```java
 
