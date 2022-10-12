@@ -461,22 +461,22 @@ public class Sandwich {
     String bread;
     String topping;
 
-    public Builder meat(String meat){
+    public SandwichBuilder meat(String meat){
       this.meat = meat;
       return this;
     }
 
-    public Builder cheese(String cheese){
+    public SandwichBuilder cheese(String cheese){
       this.cheese = cheese;
       return this;
     }
     
-    public Builder bread(String bread){
+    public SandwichBuilder bread(String bread){
       this.bread = bread;
       return this;
     }
 
-    public Builder topping(String topping){
+    public SandwichBuilder topping(String topping){
       this.topping = topping;
       return this;
     }
@@ -539,6 +539,90 @@ Sandwich s2 = Sandwich
    static Sandwich vegan( String bread, String topping){
     return new Sandwich(null, null, bread, topping);
    }
+```
+
+---
+
+## Enums
+
+* Enums allow you to declare a fixed, immutable set of instances of a class.
+* Common examples of enums include days of the week or months of the year
+
+```java
+public enum DayOfWeek {
+    SUNDAY,
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY
+}
+```
+
+----
+
+### Enums (continued)
+
+An enum is a full class, and declaring an enum is equivalent to:
+
+```java
+
+public class DayOfWeek {
+
+     public static final DayOfWeek SUNDAY = new DayOfWeek();
+     public static final DayOfWeek MONDAY = new DayOfWeek();
+     // etc.
+}
+
+```
+
+----
+
+Because enums are full classes, they can also contain fields and methods
+
+```java 
+public enum DayOfWeek {
+    SUNDAY("Sun."),
+    MONDAY("Mon.",
+    TUESDAY("Tues."),
+    WEDNESDAY("Wed."),
+    THURSDAY("Thur."),
+    FRIDAY("Fri."),
+    SATURDAY("Sat");
+    
+    String abbreviation;
+    DayOfWeek(String abbreviation){
+        this.abbreviation = abbreviation;
+    }
+    
+    public String toString(){
+        return this.abbreviation;
+    }
+    
+     public static final DayOfWeek SUNDAY = new DayOfWeek("Sun.");
+     public static final DayOfWeek MONDAY = new DayOfWeek("Mon.");
+     // etc...
+}
+```
+
+----
+
+Which is equivalend to 
+
+```java
+
+public class DayOfWeek {
+    private final String abbreviation;
+    public DayOfWeek(String abbreviation){
+      this.abbreviation = abbreviation;
+    }
+    
+    public String toString(){
+        return this.abbreviation;
+    }
+}
+
 ```
 
 ---
