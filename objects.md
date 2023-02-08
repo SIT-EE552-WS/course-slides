@@ -168,7 +168,7 @@ Rectangle r3 = new Rectangle();
 
 ## Classes vs. Objects
 
-- Each instance has is own copy of each of the class's fields
+- Each instance has its own copy of each of the class's fields
 
 ```java
 Person p1 = new Person();
@@ -278,7 +278,7 @@ Animal a = new Dog(); // this is fine
 Canid c = new Dog();  // so is this
 ```
 
-- You can also cast a superclass to its subclass if you are sure they match
+- You can also cast a superclass to its subclass _if you are sure they match_
 
 ```java
 Animal dog = new Dog();
@@ -362,7 +362,7 @@ cat.makeSound(); // prints Meow
 
 - Fields and methods in a class can have one or more access modifiers
   - `static` - the method or field belongs to the class rather
-     than the object.
+     than the object. All instances share it.
   - `public` - the method or field can be used from any other
      class in your project.
   - `protected` - the method or field can only be used by the class
